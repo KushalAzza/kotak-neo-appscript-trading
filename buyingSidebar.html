@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      body {
+        background-color: #eeeeee;
+        font-family: Arial, sans-serif;
+        padding: 10px;
+      }
+      p {
+        font-family: Monospace, sans-serif;
+        font-size: 13px;
+      }
+      button {
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        margin: 25px 0 0 0; 
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s;
+        border-radius: 5px;
+      }
+      .call-buy {
+        background-color: green;
+      }
+      .call-buy:hover {
+        background-color: #005700;
+      }
+      .put-buy {
+        background-color: red;
+      }
+      .put-buy:hover {
+        background-color: #700000;
+      }
+      .square-off {
+        background-color: black;
+      }
+      .square-off:hover {
+        background-color: #444;
+      }
+      .message {
+        margin-top: 15px;
+        font-weight: bold;
+        color: black;
+      }
+      h2 {
+        text-align: center;
+      }
+    </style>
+    <script>
+      function displayMessage(message) {
+        const messageDiv = document.getElementById('message');
+        messageDiv.innerText = message;
+        setTimeout(() => {
+          messageDiv.innerText = '';
+        }, 5000);
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Neo Buying Terminal</h2>
+    <p>Use this terminal when market is uptrend [CE] or downtrend [PE]. PLAY SAFE. </p><hr>
+    <button class="call-buy" onclick="google.script.run.withSuccessHandler(displayMessage).callBuy()">CALL BUY 📈 </button>
+    <p>When the market is trending up, buy the CALL options.</p><hr>
+    <button class="square-off" onclick="google.script.run.withSuccessHandler(displayMessage).squareOff()">SQUARE OFF ❎ </button>
+    <p>When hit the TARGET or reached the STOPLOSS, square-off the positions.</p><hr>
+    <button class="put-buy" onclick="google.script.run.withSuccessHandler(displayMessage).putBuy()">PUT BUY 📉 </button>
+    <p>When the market is trending down, buy the PUT options.</p><hr>
+    <div id="message" class="message"></div>
+  </body>
+</html>

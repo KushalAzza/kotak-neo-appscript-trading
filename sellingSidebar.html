@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      body {
+        background-color: #eeeeee;
+        font-family: Arial, sans-serif;
+        padding: 10px;
+      }
+      p {
+        font-family: Monospace, sans-serif;
+        font-size: 13px;
+      }
+      .button-container {
+        display: flex; /* Use flexbox to align buttons */
+        justify-content: space-between; /* Space between buttons */
+        margin-top: 25px;
+      }
+      button {
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s;
+        border-radius: 5px;
+        flex: 1; /* Allow buttons to take equal space */
+        margin-right: 10px; /* Add space between buttons */
+      }
+      button:last-child {
+        margin-right: 0; /* Remove right margin for last button */
+      }
+      .rebalance-sell {
+        background-color: black;
+        width: 100%;
+        margin-top: 15px;
+      }
+      .rebalance-sell:hover {
+        background-color: #333;
+      }
+      .enter-sell {
+        background-color: black;
+      }
+      .enter-sell:hover {
+        background-color: #333;
+      }
+      .exit-sell {
+        background-color: black;
+      }
+      .exit-sell:hover {
+        background-color: #333;
+      }
+      .rebalance-buy {
+        background-color: grey;
+        width: 100%;
+        margin-top: 15px;
+      }
+      .rebalance-buy:hover {
+        background-color: #a00000;
+      }
+      .enter-buy {
+        background-color: grey;
+      }
+      .enter-buy:hover {
+        background-color: #a00000;
+      }
+      .exit-buy {
+        background-color: grey; /* Same as FAR BUY */
+      }
+      .exit-buy:hover {
+        background-color: #a00000; /* Same hover effect */
+      }
+      .message {
+        margin-top: 15px;
+        font-weight: bold;
+        color: black;
+      }
+      h2 {
+        text-align: center;
+      }
+    </style>
+    <script>
+      function displayMessage(message) {
+        const messageDiv = document.getElementById('message');
+        messageDiv.innerText = message;
+        setTimeout(() => {
+          messageDiv.innerText = '';
+        }, 5000); // Message disappears after 5 seconds
+      }
+      function exitBuy() {
+        // Function logic for EXIT BUY
+        displayMessage('EXIT BUY executed!');
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Neo Selling Terminal</h2>
+    <p>Use this terminal when the market flat or sideways. PLAY SAFE.</p><hr>
+    <button class="rebalance-sell" onclick="google.script.run.withSuccessHandler(displayMessage).rebalanceSell()">Re-SELL 🔄</button>
+    <p>When the market is volatile, rebalance the SELL positions.</p>
+    <div class="button-container">
+      <button class="enter-sell" onclick="google.script.run.withSuccessHandler(displayMessage).enterSell()">SELL IN 💰</button>
+      <button class="exit-sell" onclick="google.script.run.withSuccessHandler(displayMessage).exitSell()">SELL OUT ❎</button>
+    </div>
+    <p>When the market is flat, sell the CALL & PUT options.</p><hr>
+    <button class="rebalance-buy" onclick="google.script.run.withSuccessHandler(displayMessage).rebalanceBuy()">Re-BUY 🔄</button>
+    <p>When the market has directional, rebalance the BUY positions.</p>
+    <div class="button-container">
+      <button class="enter-buy" onclick="google.script.run.withSuccessHandler(displayMessage).enterBuy()">BUY IN 💰</button>
+      <button class="exit-buy" onclick="google.script.run.withSuccessHandler(displayMessage).exitBuy()">BUY OUT ❎</button>
+    </div>
+    <p>When the market is trending, exit the Buy and re-enter.</p>
+    <hr>
+    <div id="message" class="message"></div>
+  </body>
+</html>

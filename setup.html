@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <style>
+    body {
+      background-color: #eeeeee;
+      font-family: Arial, sans-serif;
+      padding: 10px;
+    }
+    p {
+      font-family: Monospace, sans-serif;
+      font-size: 13px;
+    }
+    .button-container {
+      display: flex; /* Use flexbox to align buttons */
+      justify-content: space-between; /* Space between buttons */
+      margin-top: 25px;
+    }
+    button {
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s;
+      border-radius: 5px;
+      flex: 1; /* Allow buttons to take equal space */
+      margin-right: 10px; /* Add space between buttons */
+    }
+    button:last-child {
+      margin-right: 0; /* Remove right margin for last button */
+    }
+    .action-button {
+      background-color: black;
+    }
+    .action-button:hover {
+      background-color: #333;
+    }
+    .clear-log {
+      background-color: black;
+      margin-top: 25px;
+      width: 100%;
+    }
+    .clear-log:hover {
+      background-color: #333;
+    }
+    .message {
+      margin-top: 15px;
+      font-weight: bold;
+      color: black;
+    }
+    h2 {
+      text-align: center;
+    }
+  </style>
+  <script>
+    function displayMessage(message) {
+      const messageDiv = document.getElementById('message');
+      messageDiv.innerText = message;
+      setTimeout(() => {
+        messageDiv.innerText = '';
+      }, 5000); // Message disappears after 5 seconds
+    }
+  </script>
+</head>
+<body>
+  <h2>Neo Setup Terminal</h2>
+  <p>Manaul actions for starting and stopping the trading automation.</p><hr>
+
+  <div class="button-container">
+    <button class="action-button" onclick="google.script.run.withSuccessHandler(displayMessage).oAuthSession()">Start Auth 🔑</button>
+    <button class="action-button" onclick="google.script.run.withSuccessHandler(displayMessage).clearMaster()">Clear Master 🧹</button>
+  </div>
+  <p>Intiate the authentication and clear the existing data for fresh start.</p><hr>
+  <div class="button-container">
+    <button class="action-button" onclick="google.script.run.withSuccessHandler(displayMessage).createMasterTrigger()">Start Trigger 🕒</button>
+    <button class="action-button" onclick="google.script.run.withSuccessHandler(displayMessage).deleteSpecificTrigger('masterTrigger')">Stop Trigger ⛔</button>
+  </div>
+  <p>Start and stop the automation workflow.</p><hr>
+  <button class="clear-log" onclick="google.script.run.withSuccessHandler(displayMessage).clearLog()">Clear Log 🧹</button>
+  <p>Clear the Logs [LOG] and P&L [MASTER] records.</p><hr>
+  <div id="message" class="message"></div>
+</body>
+</html>
